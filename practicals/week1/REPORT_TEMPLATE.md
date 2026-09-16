@@ -1,7 +1,7 @@
 # Practical 1 report: preparing biological data for machine learning
 
-**Student:** [name]  
-**Date:** [date]  
+**Student:** Oleh Kovalyshyn
+**Date:** 16 Sep 2026
 **Practical:** 1 - Data to ML-ready format
 
 ## How to use this template
@@ -11,11 +11,11 @@ Replace the text in square brackets with your own answers. Include figures and t
 
 In 150-250 words, summarize:
 
-- the biological question 
-- the dataset or datasets used 
-- the main preparation decisions 
-- the most important data-quality issue 
-- the final train/test design 
+- the biological question
+- the dataset or datasets used
+- the main preparation decisions
+- the most important data-quality issue
+- the final train/test design
 - one limitation that affects interpretation.
 
 [Write summary here]
@@ -79,24 +79,40 @@ Complete this section before describing modelling results.
 ### 3.1 Data presentation
 
 Describe:
-- what one row represents 
-- what one biological mouse represents 
-- `MouseID` and derived `mouse_id` 
-- `Genotype`, `Treatment`, `Behavior`, and `class` 
+- what one row represents
+- what one biological mouse represents
+- `MouseID` and derived `mouse_id`
+- `Genotype`, `Treatment`, `Behavior`, and `class`
 - the prediction target selected.
 
-**Answers:**  
-[Write answers here.]
+**Answers:**
+One row is one experimental sample: a mouse, one of the 5 dilution points, one of the 3 technical replicates
+
+A mouse is a biological sample/replicate. There are 72 unique mice (38 control, 34 trisomic).
+
+`MouseID` is formed by joining a unique mouse identifier with technical replicate identifier. So for each former, there are 15 of the latter. E.g. `309_15` means mouse 309, 15th replicate. `mouse_id` is basically the part before the `_`, just a unique mouse identifier.
+
+`Genotype` is either control or trisomic (Down syndrome).
+
+`Treatment` is either saline or memantine. Saline is used like a control, "untreated" group. Memantine is the drug under investigation.
+
+`Behavior` - context-shock (stimulated to learn) or shock-context (not stimulated). _"The context-shock (CS) group are placed in a novel cage, allowed to explore for several minutes and then given a brief electric shock; normal, wild type mice learn to associate the novel context with the aversive stimulus and will freeze upon re-exposure to the same cage. To control for the effects of the shock alone, a second group of mice, the shock-context (SC) group, are placed in the novel cage, immediately given the electric shock, and then allowed to explore; with these conditions, normal, wild type mice do not learn to associate the novel cage with the shock and do not freeze upon re-exposure to the same cage."_
+
+`class` - a combination of the three previous fields. `c-SC-s` - control mouse, shock-context, saline treatment.
+
+Selected prediction target: Genotype. It's the most obvious choice given the dataset size. An auxillary objective might be how well the model differentiates between Memantine-treated Down mice where the drug helped to rescue learning functions and control mice.
 
 Explain the structure of the dataset
+
+The dataset has genes as columns and observations (technical replicates) as rows. It seems to be bulk data.
 
 ### 3.2 Tidy-data assessment and EDA
 
 Report:
-- rows and columns: `[shape]` 
-- unique mice: `[number]` 
-- measurements per mouse: `[number]` 
-- categories and counts for Genotype, Treatment, Behavior, and class: `[summary]` 
+- rows and columns: `1080x82`
+- unique mice: `72`
+- measurements per mouse: `15`
+- categories and counts for Genotype, Treatment, Behavior, and class: `[summary]`
 - whether the table is tidy: `[answer and evidence]`.
 
 Include at least three plots. For each, state the biological question it addresses.
@@ -104,12 +120,12 @@ Include at least three plots. For each, state the biological question it address
 ### 3.3 Diagnostics
 
 Report checks for:
-- missingness in proteins and metadata: `[result]` 
-- duplicate rows or duplicate measurement identifiers: `[result]` 
-- expected 15 measurements per mouse: `[result]` 
-- unusual categories or inconsistent labels: `[result]` 
-- non-finite, negative, or implausible expression values: `[result]` 
-- highly correlated or redundant protein variables: `[result]` 
+- missingness in proteins and metadata: `[result]`
+- duplicate rows or duplicate measurement identifiers: `[result]`
+- expected 15 measurements per mouse: `[result]`
+- unusual categories or inconsistent labels: `[result]`
+- non-finite, negative, or implausible expression values: `[result]`
+- highly correlated or redundant protein variables: `[result]`
 - predictors that are deterministic parts of the target: `[result]`.
 
 ### 3.4 Preparation and feature roles
@@ -127,14 +143,14 @@ Missing-value decision:
 ### 3.6 Confounding and distribution structure
 
 Investigate associations between the target and:
-- treatment 
-- behavior 
-- genotype 
-- composite class 
+- treatment
+- behavior
+- genotype
+- composite class
 - number of measurements per mouse.
 
 ## References and reproducibility
 Together with this report you need to provide
-- notebook 
+- notebook
 - data files
 - generated plots
