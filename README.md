@@ -54,9 +54,9 @@ uv --version
 From the repository root:
 
 ```powershell
-uv sync
+uv sync --extra cpu
 ```
 
-This creates or updates the project environment in `.venv` using the versions recorded in `uv.lock`. The `.venv` directory should not be committed to GitHub.
+This creates or updates the project environment in `.venv` using the versions recorded in `uv.lock`. For a recent NVIDIA GPU, use `uv sync --extra cu128` instead. The `.venv` directory should not be committed to GitHub. See [PYTORCH_SETUP.md](PYTORCH_SETUP.md) for backend selection and verification.
 
 Start JupyterLab with:
