@@ -5,3 +5,9 @@ graphify-out/
 .ipynb_checkpoints/
 .DS_Store
 .vscode
+
+# Local MLflow tracking state and artifacts
+mlruns/
+mlartifacts/
+week6/mlflow.db
+week6/mlartifacts/
