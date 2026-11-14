@@ -21,6 +21,7 @@ dependencies = [
     "statsmodels>=0.14",
     "seaborn>=0.13.2",
     "torchview>=0.2.6",
+    "torch-geometric>=2.7.0",
     "transformers>=4.50",
     "accelerate>=1.0",
     "ucimlrepo>=0.0.7",
@@ -51,6 +52,12 @@ regression-zoo = [
     "pymc>=5.25",
     "pygam>=0.9",
     "pysr>=1.5",
+]
+# Optional because it downloads a large foundation-model package and model
+# weights on first use. The notebook uses the latest available TabPFN-3.5
+# checkpoint when this extra is installed.
+tabpfn = [
+    "tabpfn>=9.2.0,<10",
 ]
 # MARS/PyEarth requires a native C/C++ build on Windows because a compatible
 # wheel is not available. Install this extra only after installing MSVC Build Tools.
