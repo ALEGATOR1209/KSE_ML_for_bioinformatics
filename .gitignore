@@ -24,6 +24,9 @@ esp32_camera_capture/
 /practicals/week11/sthelar_subset/_cache/
 /practicals/week11/uci_har_data/
 
+# Local LAMMPS/PyL3DMD dynamic-descriptor workspace; keep it out of the course repo.
+/practicals/week10_dynamic/
+
 # Keep only the deliberately selected public YOLO annotation example
 /practicals/week7/detection/colonies_annotation/obj_train_data/*
 !/practicals/week7/detection/colonies_annotation/obj_train_data/604.jpg
